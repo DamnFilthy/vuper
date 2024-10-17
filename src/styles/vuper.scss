@@ -1,0 +1,49 @@
+.vuper .vuper-overlay {
+    transition: 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &--open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.vuper .vuper-wrapper {
+    user-select: none;
+    transition: 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    position: absolute;
+    bottom: -3000px;
+    width: 100%;
+    height: 96%;
+    z-index: 9999;
+    padding: 20px 30px;
+    background-color: #fff;
+
+    &.dragging {
+        transition: none;
+    }
+
+    &--open {
+        bottom: 0;
+    }
+
+    &--divider {
+        position: absolute;
+        top: 5px;
+        left: calc(50% - 30px);
+        width: 60px;
+        height: 4px;
+        border-radius: 25px;
+        background-color: #c2b1b1;
+    }
+}
