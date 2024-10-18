@@ -53,9 +53,11 @@ export class Vuper {
     }
 
     closeModal() {
+        document.querySelector('.vuper-main')?.classList.remove('vuper-main--open');
         this.VuperModalDiv!.classList.remove('vuper-wrapper--open');
         this.VuperOverlayDiv!.classList.remove('vuper-overlay--open');
         document.body.style.overflow = 'auto';
+        document.body.style.background = '';
 
         this.reInitDraggin();
 
@@ -63,9 +65,11 @@ export class Vuper {
     }
 
     openModal() {
+        document.querySelector('.vuper-main')?.classList.add('vuper-main--open');
         this.VuperModalDiv!.classList.add('vuper-wrapper--open');
         this.VuperOverlayDiv!.classList.add('vuper-overlay--open');
         document.body.style.overflow = 'hidden';
+        document.body.style.background = 'black';
 
         this.reInitDraggin();
 
