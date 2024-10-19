@@ -1,9 +1,11 @@
 body {
-    transition: 0.2s all;
+    transition: 0.1s all;
+    background: white;
 }
 
 .vuper-main {
-    transition: 0.5s all;
+    background: white;
+    transition: 0.3s all;
 
     &--open {
         height: 100vh;
@@ -17,7 +19,7 @@ body {
 }
 
 .vuper .vuper-overlay {
-    transition: 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: 1s cubic-bezier(0.32, 0.72, 0, 1);
     opacity: 0;
     visibility: hidden;
     position: fixed;
@@ -55,7 +57,13 @@ body {
     }
 
     &--open {
-        bottom: 0;
+        // bottom: 0;
+        animation: slideInFromBottom 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    }
+
+    // Анимация закрытия
+    &--close {
+        animation: slideOutToBottom 1.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
     }
 
     &--divider {
@@ -66,5 +74,23 @@ body {
         height: 4px;
         border-radius: 25px;
         background-color: #c2b1b1;
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        bottom: -3000px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes slideOutToBottom {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -3000px;
     }
 }

@@ -63,11 +63,15 @@ export class Vuper {
     }
 
     closeModal() {
-        document.querySelector('.vuper-main')?.classList.remove('vuper-main--open');
-        this.VuperModalDiv!.classList.remove('vuper-wrapper--open');
-        this.VuperOverlayDiv!.classList.remove('vuper-overlay--open');
+        document.body.style.background = 'white';
         document.body.style.overflow = 'auto';
-        document.body.style.background = '';
+
+        this.VuperRootBlockElement!.classList.remove('vuper-main--open');
+
+        this.VuperModalDiv!.classList.remove('vuper-wrapper--open');
+        this.VuperModalDiv!.classList.add('vuper-wrapper--close');
+
+        this.VuperOverlayDiv!.classList.remove('vuper-overlay--open');
 
         this.reInitDraggin();
 
@@ -75,11 +79,15 @@ export class Vuper {
     }
 
     openModal() {
-        document.querySelector('.vuper-main')?.classList.add('vuper-main--open');
-        this.VuperModalDiv!.classList.add('vuper-wrapper--open');
-        this.VuperOverlayDiv!.classList.add('vuper-overlay--open');
         document.body.style.overflow = 'hidden';
         document.body.style.background = 'black';
+
+        this.VuperRootBlockElement!.classList.add('vuper-main--open');
+
+        this.VuperModalDiv!.classList.remove('vuper-wrapper--close');
+        this.VuperModalDiv!.classList.add('vuper-wrapper--open');
+
+        this.VuperOverlayDiv!.classList.add('vuper-overlay--open');
 
         this.reInitDraggin();
 
