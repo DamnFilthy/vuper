@@ -1,6 +1,7 @@
 import '@/styles/vuper.scss';
 
 export interface VuperOptions {
+    root: string;
     fullscreen: boolean;
     onOpen: () => void;
     onClose: () => void;
@@ -8,21 +9,30 @@ export interface VuperOptions {
 
 export class Vuper {
     private Options: VuperOptions;
-    private elementId: string | number;
+    private rootSelector: string;
+    private elementSelector: string;
     private isFullscreen: boolean;
+
+    private VuperRootBlockElement: HTMLElement | null;
     private VuperBlockElement: HTMLElement | null;
     private VuperOverlayDiv: HTMLElement;
     private VuperModalDiv: HTMLElement | null;
     private VuperDividerDiv: HTMLElement | null;
+
     private isDragging: boolean = false;
     private startY: number = 0;
     private currentY: number = 0;
 
-    constructor(id: string | number, options: VuperOptions) {
+    constructor(elementSelector: string, options: VuperOptions) {
         this.Options = options;
-        this.elementId = id;
+        this.rootSelector = options.root ?? '#app';
+        this.elementSelector = elementSelector;
         this.isFullscreen = options.fullscreen ?? false;
-        this.VuperBlockElement = document.querySelector(`#${this.elementId}`);
+
+        this.VuperRootBlockElement = document.querySelector(this.rootSelector);
+        this.VuperRootBlockElement?.classList.add('vuper-main');
+
+        this.VuperBlockElement = document.querySelector(this.elementSelector);
 
         this.VuperOverlayDiv = document.createElement('div');
         this.VuperOverlayDiv.classList.add('vuper-overlay');
